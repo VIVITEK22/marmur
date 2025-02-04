@@ -739,3 +739,7 @@ $(".employees__item").on("mouseover", function () {
     $(`.employees__block-image${number}`).addClass("employees__image--active");
   }
 });
+
+const videoSwiper = new Swiper('.video__list', {
+  slidesPerView: 3,
+})

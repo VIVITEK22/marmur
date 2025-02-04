@@ -28,6 +28,18 @@ body {
   margin-bottom: 128px;
 }
 
+.info > .container {
+  max-width: unset;
+  padding: 0 30px;
+}
+.info__desc svg {
+  width: 396px;
+  height: 84px;
+}
+.info__desc svg path {
+  fill: #000;
+}
+
 .info__text-wrapper p {
   font-family: Inter;
   font-size: 14px;
@@ -71,6 +83,7 @@ body {
   z-index: 1;
   opacity: 0;
   transition: opacity 0.7s;
+  width: 100%;
 }
 
 .info__block-item:first-of-type .info__item-image {
@@ -91,16 +104,16 @@ body {
 
 .info__item-title {
   color: #fff;
-  font-size: 20px;
+  font-size: 1.39vw;
   font-weight: 900;
-  line-height: 24px;
+  line-height: 1.66vw;
 }
 
 .info__item-desc {
   color: #fff;
-  font-size: 20px;
+  font-size: 1.39vw;
   font-weight: 900;
-  line-height: 24px;
+  line-height: 1.66vw;
   white-space: nowrap;
 }
 
@@ -111,13 +124,12 @@ body {
   height: 100%;
   display: flex;
   align-items: flex-end;
-  padding: 31px 15px 48px 17px;
+  padding: 2.12vw 1.05vw 3.28vw 1.66vw;
   cursor: pointer;
 }
 
 .info__block-item {
   width: 100%;
-  max-width: 337px;
 }
 
 .info__item-body {
@@ -931,6 +943,10 @@ body {
   padding: 55px 106px;
   margin-bottom: 205px;
 }
+.video > .container {
+  max-width: 1400px;
+  padding: 0 30px;
+}
 
 .video__title {
   margin-bottom: 19px;
@@ -981,9 +997,6 @@ body {
   border: 1px solid #000;
 }
 .video__list {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
   padding: 25px 37px 11px 37px;
   background-color: #D9D9D9;
 }
@@ -992,7 +1005,8 @@ body {
 }
 .video__item {
   max-width: 359px;
-  margin-right: 20px;
+  margin-right: 4%;
+  width: 100% !important;
 }
 .video__item:last-of-type {
   margin-right: 0;
