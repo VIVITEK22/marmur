@@ -618,6 +618,11 @@ $(".info__block-item").on("mouseover", function () {
     $(".info__line3").css("bottom", "25%");
     $(".info__line8").css("bottom", "9.5%");
     $(".info__line7").css("top", "30%");
+    $(".info__span1").css("left", "51%")
+    $(".info__span6").css("bottom", "30%")
+    $(".info__span4").css("left", "20%")
+    $(".info__span2").css("top", "20%")
+    $(".info__span3").css("width", "10%")
   } else {
     const width = $(this).width();
     $(".info__item-line").css("left", `calc(7% + ${width * (number - 1)}px)`);
@@ -630,6 +635,11 @@ $(".info__block-item").on("mouseover", function () {
     $(".info__line3").css("bottom", "25%");
     $(".info__line8").css("bottom", "9.5%");
     $(".info__line7").css("top", "30%");
+    $(".info__span1").css("left", "49%")
+    $(".info__span6").css("bottom", "48%")
+    $(".info__span4").css("left", "20%")
+    $(".info__span2").css("top", "20%")
+    $(".info__span3").css("width", "10%")
   }
   if (number == 3) {
     $(".info__line8").css("bottom", "24%");
@@ -638,6 +648,11 @@ $(".info__block-item").on("mouseover", function () {
     $(".info__line5").css("height", "80%");
     $(".info__line2").css("bottom", "0");
     $(".info__line7").css("top", "30%");
+    $(".info__span1").css("left", "51%")
+    $(".info__span4").css("left", "24%")
+    $(".info__span2").css("top", "24%")
+    $(".info__span6").css("bottom", "48%")
+    $(".info__span3").css("width", "10%")
   }
   if (number == 4) {
     $(".info__line2").css("bottom", "20%");
@@ -645,6 +660,11 @@ $(".info__block-item").on("mouseover", function () {
     $(".info__line3").css("bottom", "25%");
     $(".info__line8").css("bottom", "9.5%");
     $(".info__line7").css("top", "21%");
+    $(".info__span6").css("bottom", "30%")
+    $(".info__span1").css("left", "49%")
+    $(".info__span4").css("left", "24%")
+    $(".info__span2").css("top", "24%")
+    $(".info__span3").css("width", "7%")
   }
 });
 $(".info__block-item").on("click", function () {

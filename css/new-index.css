@@ -133,6 +133,9 @@ body {
 .info__block--active .info__item-image {
   opacity: 1;
 }
+.info__span {
+  transition: all 0.5s;
+}
 
 .info__span1 {
   display: block;
