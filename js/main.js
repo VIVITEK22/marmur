@@ -809,21 +809,22 @@ $(".cards__list").on("transitionstart", function () {
     }
   }
 });
-
-$(".result__image-line").draggable({
-  containment: ".result__item",
-  axis: "x",
-  drag: function (_, ui) {
-    ui.position.left = Math.max(20, ui.position.left);
-    if (ui.position.left > $('.result__item').width() - 20) {
-      ui.position.left = $('.result__item').width() - 20;
-    }
-    $(this)
-      .closest(".result__image-section")
-      .children(".result__image.visual")
-      .css("width", `${ui.position.left}px`);
-  },
-});
+if (document.querySelector('.result__image-line')) {
+  $(".result__image-line").draggable({
+    containment: ".result__item",
+    axis: "x",
+    drag: function (_, ui) {
+      ui.position.left = Math.max(20, ui.position.left);
+      if (ui.position.left > $('.result__item').width() - 20) {
+        ui.position.left = $('.result__item').width() - 20;
+      }
+      $(this)
+        .closest(".result__image-section")
+        .children(".result__image.visual")
+        .css("width", `${ui.position.left}px`);
+    },
+  });
+}
 
 const resultSwiper = new Swiper(".result__item", {
   slidesPerView: 1,
