@@ -518,12 +518,127 @@ $(document).on("input", ".js-input", function () {
   $(this).removeClass("error");
 });
 
+$('.feedback-section__form').find('.js-input').on('input', function() {
+  if ($('.feedback-section__form').find('.form-result').hasClass('ok')) {
+    $('.feedback-section__form').find('.form-result').removeClass('ok');
+  } else if ($('.feedback-section__form').find('.form-result').hasClass('error')) {
+    $('.feedback-section__form').find('.form-result').removeClass('error');
+  }
+});
+
+$('.excursion__form').find('.js-input').on('input', function() {
+  if ($('.excursion').find('.form-result').hasClass('ok')) {
+    $('.excursion').find('.form-result').removeClass('ok');
+  } else if ($('.excursion').find('.form-result').hasClass('error')) {
+    $('.excursion').find('.form-result').removeClass('error');
+  }
+});
+
 $('input[name="email"]').on("input", function () {
   $('input[name="tel"]').removeClass("error");
 });
 
 $('input[name="tel"]').on("input", function () {
   $('input[name="email"]').removeClass("error");
+  $('.excursion__input[name="name"]').removeClass("error");
+});
+
+$('.excursion__input[name="name"]').on("input", function () {
+  $('.excursion__input[name="tel"]').removeClass("error");
+});
+
+// new page forms
+$(document).on("submit", ".excursion__form", function (e) {
+  e.preventDefault();
+  const $form = $(this);
+  const $name = $form.find('[name="name"]');
+  const $tel = $form.find('[name="tel"]');
+
+  if ($name.val().length < 2) {
+    $name.addClass("error");
+  }
+
+  if ($tel.val().length < 4) {
+    $tel.addClass("error");
+  }
+
+  if ($form.find(".js-input.error").length == 0) {
+    $.ajax({
+      type: "POST",
+      url: site.theme_path + "/inc/forms/excursion-form.php",
+      data: $form.serialize(),
+      beforeSend: function () {
+        $form.addClass("loading");
+      },
+      success: function (response) {
+        $form.trigger("reset");
+        $form.removeClass("loading").addClass("success");
+        $form.find(".js-input").removeClass("error not-empty");
+        if (response) {
+          $('.excursion').find(".js-form-result").addClass("ok");
+        } else {
+          $('.excursion').find(".js-form-result").addClass("error");
+        }
+      },
+    });
+  }
+  return false;
+});
+
+$(".feedback-section__form .js-input").on("input", function () {
+  if ($(this).val().length > 2) {
+    $(this).addClass("not-empty");
+  } else {
+    $(this).removeClass("not-empty");
+  }
+  if ($(".feedback-section__form .js-input.not-empty").length >= 3) {
+    $(".feedback-section__button").attr("disabled", false);
+  } else {
+    $(".feedback-section__button").attr("disabled", true);
+  }
+});
+
+$(document).on("submit", ".feedback-section__form", function (e) {
+  e.preventDefault();
+  const $form = $(this);
+  const $name = $form.find('[name="name"]');
+  const $last_name = $form.find('[name="last-name"]');
+  const $tel = $form.find('[name="tel"]');
+
+  if ($name.val().length < 2) {
+    $name.addClass("error");
+  }
+
+  if ($last_name.val().length < 2) {
+    $last_name.addClass("error");
+  }
+
+  if ($tel.val().length < 4) {
+    $tel.addClass("error");
+  }
+
+  if ($form.find(".js-input.error").length == 0) {
+    $.ajax({
+      type: "POST",
+      url: site.theme_path + "/inc/forms/feedback-section-form.php",
+      data: $form.serialize(),
+      beforeSend: function () {
+        $form.find('.feedback-section__button').attr('disabled', true);
+      },
+      success: function (response) {
+        $form.find('.feedback-section__button').attr('disabled', false);
+        $form.trigger("reset");
+        $form.removeClass("loading").addClass("success");
+        $form.find(".js-input").removeClass("error not-empty");
+        if (response) {
+          $form.find(".form-result").addClass("ok");
+        } else {
+          $form.find(".form-result").addClass("error");
+        }
+      },
+    });
+  }
+  return false;
 });
 
 $(document).on("submit", ".js-form-feedback", function () {
