@@ -899,11 +899,11 @@ const videoSwiper = new Swiper(".video__list", {
   },
   breakpoints: {
     0: {
-      direction: "vertical",
-      slidesPerView: 3,
-      spaceBetween: 16,
+      slidesPerView: 'auto',
+      spaceBetween: 30,
     },
     991: {
+      slidesPerView: 3,
       direction: "horizontal",
       spaceBetween: 64,
     },

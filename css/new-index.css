@@ -3002,14 +3002,12 @@ body {
   }
 
   .video {
-    padding: 27px 57px 54px 57px;
     margin-bottom: 0;
   }
 
   .video__list {
-    height: 697px;
-    width: 261px;
-    padding: 25px 27px 0 27px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
   .video__title {
@@ -3044,10 +3042,6 @@ body {
 
   .video__title br {
     display: none;
-  }
-
-  .video>.container {
-    padding: 0;
   }
 
   .video__button-wrapper {
