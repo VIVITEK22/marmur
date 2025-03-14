@@ -3080,6 +3080,15 @@ body {
   margin-bottom: 110px;
 }
 
+.project .cards__item a {
+  height: 37.7vw;
+  display: block;
+}
+
+.project .cards__item img {
+  width: 100%;
+}
+
 .project .cards__item--select img {
   height: 37.7vw;
 }
@@ -3104,6 +3113,10 @@ body {
 .project__plan-item {
   max-width: 586px;
   margin: 0 auto;
+}
+
+.project__plan-wrapper {
+  display: block;
 }
 
 .project__plan-wrapper img {
@@ -3168,9 +3181,15 @@ body {
   width: 30vw;
 }
 
+.project__list-row .project__list-item a {
+  width: 100%;
+  display: block;
+  height: 37.7vw;
+}
+
 .project__list-row .project__item-image {
   object-position: center;
-  height: 37.7vw;
+  height: 100%;
   object-fit: cover;
   flex-shrink: 0;
   width: 100%;
@@ -3375,6 +3394,17 @@ body {
   .project .cards__item--select img {
     object-fit: cover;
     height: 63vw;
+  }
+  .project .cards__item a {
+    height: 63vw;
+  }
+
+  .project .cards__item--select a img {
+    height: 100%;
+  }
+
+  .project .cards__item a img {
+    height: 100%;
   }
 
   .cards__list {
@@ -4166,16 +4196,26 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
   }
 
   .project {
     margin-bottom: 60px;
   }
 
+  .project .container {
+    padding: 0;
+  }
+
+  .project .cards__item-bottom {
+    align-items: flex-start;
+    padding-left: 10px;
+    margin-top: -51px;
+  }
+
   .project .cards__item-text {
-    font-size: 30px;
-    line-height: 40px;
+    font-size: 19px;
+    line-height: 25px;
   }
 
   .project__main-title {
@@ -4214,11 +4254,31 @@ body {
   }
 
   .project__main-image::before {
-    padding-top: calc((461 / 346)* 100%);
+    padding-top: calc((206 / 375) * 100%);
   }
 
   .project__image-review {
     left: 27px;
+  }
+
+  .project__review-block {
+    max-width: 136px;
+    padding: 10px 0 11px 15px;
+  }
+
+  .project__review-circle {
+    width: 18px;
+    height: 18px;
+  }
+
+  .project__image-desc {
+    font-size: 9px;
+    line-height: 11px;
+  }
+
+  .project__review-block > p {
+    font-size: 9px;
+    line-height: 9px;
   }
 
   .project__images-title {
@@ -4245,7 +4305,7 @@ body {
     margin-bottom: 60px;
   }
 
-  .project__list-row .project__item-image {
+  .project__list-row .project__list-item a {
     height: 63vw;
   }
 
