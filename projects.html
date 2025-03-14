@@ -172,27 +172,126 @@
   <main class="main post">
     <div class="projects">
       <div class="container">
-        <h1 class="projects__title">ПОРТФОЛИО</h1>
-        <div class="projects__filters">
-          <div class="projects__filters-item projects__filters-item--active">
+        <h1 class="projects__title js-scroll-anim">ПОРТФОЛИО</h1>
+        <div class="projects__filters js-scroll-anim">
+          <div class="projects__filters-item projects__filters-item--active" data-filter="*">
             <span class="projects__filters-text">Все</span>
             <span class="projects__filters-span"></span>
           </div>
-          <div class="projects__filters-item">
+          <div class="projects__filters-item" data-filter=".architecture">
             <span class="projects__filters-text">Архитектура</span>
             <span class="projects__filters-span"></span>
           </div>
-          <div class="projects__filters-item">
+          <div class="projects__filters-item"  data-filter=".design">
             <span class="projects__filters-text">Дизайн</span>
             <span class="projects__filters-span"></span>
           </div>
         </div>
-        <div class="projects__grid">
-          <div class="projects__item">
-            <img src="/wp-img/projects-image1.png" alt="" class="projects__image">
+        <div class="projects__grid js-scroll-anim">
+          <div class="projects__item architecture">
+            <a class="projects__item-link" href="#">
+              <div class="projects__image-wrapper">
+                <img src="/wp-img/projects-image1.png" alt="" class="projects__image">
+              </div>
+              <div class="projects__item-content">
+                <h4 class="projects__item-title">Шевруд 500</h4>
+                <p class="projects__item-desc">2022 Московская обл. 524 м2</p>
+              </div>
+            </a>
+          </div>
+          <div class="projects__item design">
+            <div class="projects__image-wrapper">
+              <img src="/wp-img/projects-image1.png" alt="" class="projects__image">
+            </div>
             <div class="projects__item-content">
               <h4 class="projects__item-title">Шевруд 500</h4>
               <p class="projects__item-desc">2022 Московская обл. 524 м2</p>
+            </div>
+          </div>
+          <div class="projects__item architecture">
+            <div class="projects__image-wrapper">
+              <img src="/wp-img/projects-image1.png" alt="" class="projects__image">
+            </div>
+            <div class="projects__item-content">
+              <h4 class="projects__item-title">Шевруд 500</h4>
+              <p class="projects__item-desc">2022 Московская обл. 524 м2</p>
+            </div>
+          </div>
+        </div>
+        <div class="projects__button-wrapper js-scroll-anim">
+          <button class="projects__button modal-button">Получить расчет стоимости вашего проекта</button>
+        </div>
+      </div>
+    </div>
+    <div class="excursion">
+      <div class="container">
+        <h1 class="excursion__title js-scroll-anim">ЭКСКУРСИЯ</h1>
+        <p class="excursion__desc js-scroll-anim">
+          Запишитесь на экскурсию по объекту.<br>
+          У нас сейчас несколько активных строек, найдем для вас что-то подходящее.
+        </p>
+        <form class="excursion__form js-scroll-anim">
+          <input type="hidden" name="form-name" value="form-excursion">
+          <input type="text" name="name" class="excursion__input" placeholder="Имя">
+          <input type="text" name="tel" class="excursion__input" placeholder="Номер телефона для обратной связи">
+          <button class="excursion__form-button">Записаться</button>
+        </form>
+        <p class="excursion__form-desc js-scroll-anim">
+          Нажимая на кнопку, вы даете согласие на обработку персональных данных и
+          соглашаетесь с <a href="/privacy-policies">политикой конфиденциальности</a>.
+        </p>
+        <div class="form-result">
+          <span>Спасибо за заявку!</span>
+          <span>Что-то пошло не так... Попробуйте позже</span>
+        </div>
+      </div>
+    </div>
+    <div class="feedback-section">
+      <div class="container">
+        <div class="feedback-section__inner">
+          <div class="feedback-section__left">
+            <div class="feedback-section__title-wrapper js-scroll-anim">
+              <h1 class="feedback-section__title">СВЯЖИТЕСЬ С НАМИ</h1>
+              <p class="feedback-section__desc">или приходите в гости</p>
+            </div>
+            <form class="feedback-section__form js-scroll-anim">
+              <div class="feedback-section__wrapper">
+                <input type="text" class="feedback-section__form-input js-input" name="name" placeholder="Имя">
+                <input type="text" class="feedback-section__form-input js-input" name="last-name" placeholder="Фамилия">
+                <input type="text" class="feedback-section__form-input js-input" name="tel"
+                  placeholder="Номер телефона для обратной связи">
+                <textarea class="feedback-section__form-input feedback-section__input--big js-input" name="message"
+                  placeholder="Сообщение"></textarea>
+              </div>
+              <button class="feedback-section__button" disabled type="submit">
+                Отправить заявку
+                <svg width="22.004028" height="13.322266" viewBox="0 0 22.004 13.3223" fill="none"
+                  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <desc>
+                    Created with Pixso.
+                  </desc>
+                  <defs />
+                  <path id="Arrow 1"
+                    d="M18.58 5.66L14.63 1.71C14.24 1.31 14.24 0.69 14.63 0.29C15.03 -0.1 15.65 -0.1 16.05 0.29L21.7 5.95C22.1 6.34 22.1 6.97 21.7 7.36L16.05 13.02C15.65 13.42 15.03 13.42 14.63 13.02C14.24 12.62 14.24 12 14.63 11.61L18.58 7.66L0 7.66L0 5.66L18.58 5.66Z"
+                    fill="#FFFFFF" fill-opacity="1.000000" fill-rule="evenodd" />
+                </svg>
+              </button>
+              <div class="form-result">
+                <span>Спасибо за заявку!</span>
+                <span>Что-то пошло не так... Попробуйте позже</span>
+              </div>
+            </form>
+          </div>
+          <div class="feedback-section__map js-scroll-anim">
+            <div style="position:relative;overflow:hidden;"><a
+                href="https://yandex.ru/maps/213/moscow/?utm_medium=mapframe&utm_source=maps"
+                style="color:#eee;font-size:12px;position:absolute;top:0px;">Москва</a><a
+                href="https://yandex.ru/maps/213/moscow/house/odesskaya_ulitsa_2/Z04Ycw5oT0IFQFtvfXp3dX1rYw==/?ll=37.599698%2C55.664206&utm_medium=mapframe&utm_source=maps&z=16.87"
+                style="color:#eee;font-size:12px;position:absolute;top:14px;">Одесская улица, 2 —
+                Яндекс Карты</a><iframe
+                src="https://yandex.ru/map-widget/v1/?ll=37.599698%2C55.664206&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgozMzQ4Nzk1ODI1EjrQoNC-0YHRgdC40Y8sINCc0L7RgdC60LLQsCwg0J7QtNC10YHRgdC60LDRjyDRg9C70LjRhtCwLCAyIgoNCWUWQhUhqF5C&z=16.87"
+                width="665" height="568" frameborder="1" allowfullscreen="true"
+                style="position:relative;border:none;"></iframe>
             </div>
           </div>
         </div>

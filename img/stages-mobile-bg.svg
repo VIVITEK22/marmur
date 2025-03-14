@@ -1,0 +1,21 @@
+<svg width="375" height="448" viewBox="0 0 375 448" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M61 230V230C20.3424 237.564 18.4282 295.11 58.4933 305.359L61 306" stroke="black"/>
+<circle cx="61.5" cy="4.5" r="4.5" fill="black"/>
+<circle cx="61.5" cy="156.5" r="4.5" fill="black"/>
+<circle cx="65.5" cy="306.5" r="4.5" fill="black"/>
+<circle cx="65.5" cy="443.5" r="4.5" fill="black"/>
+<circle cx="312.5" cy="79.5" r="4.5" fill="black"/>
+<circle cx="312.5" cy="230.5" r="4.5" fill="black"/>
+<circle cx="317.5" cy="381.5" r="4.5" fill="black"/>
+<line x1="62" y1="3.5" x2="313" y2="3.50002" stroke="black"/>
+<line x1="57" y1="79.5" x2="313" y2="79.5" stroke="black"/>
+<line x1="62" y1="155.5" x2="313" y2="155.5" stroke="black"/>
+<line x1="61" y1="230.5" x2="312" y2="230.5" stroke="black"/>
+<line x1="66" y1="305.5" x2="317" y2="305.5" stroke="black"/>
+<line x1="119" y1="380.5" x2="317" y2="380.5" stroke="black"/>
+<path d="M312.5 3.99999V3.99999C352.975 11.6866 354.914 68.9245 315.053 79.3334L312.5 80" stroke="black"/>
+<path d="M312.5 155V155C352.975 162.687 354.914 219.924 315.053 230.333L312.5 231" stroke="black"/>
+<path d="M317.5 306V306C357.975 313.687 359.914 370.924 320.053 381.333L317.5 382" stroke="black"/>
+<path d="M57 80V80C16.3424 87.5642 14.4282 145.11 54.4933 155.359L57 156" stroke="black"/>
+<path d="M65.5003 441.5V441.5C63.0703 408.562 89.1384 380.5 122.166 380.5L125.5 380.5" stroke="black"/>
+</svg>

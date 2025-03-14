@@ -528,6 +528,16 @@ $(".feedback-section__form")
     ) {
       $(".feedback-section__form").find(".form-result").removeClass("error");
     }
+    if ($(this).val().length > 2) {
+        $(this).addClass("not-empty");
+      } else {
+        $(this).removeClass("not-empty");
+      }
+      if ($(".feedback-section__form .js-input.not-empty").length >= 1) {
+        $(".feedback-section__button").attr("disabled", false);
+      } else {
+        $(".feedback-section__button").attr("disabled", true);
+      }
   });
 
 $(".excursion__form")
@@ -542,18 +552,20 @@ $(".excursion__form")
 
 $('input[name="email"]').on("input", function () {
   $('input[name="tel"]').removeClass("error");
+  $(this).removeClass('error');
 });
 
 $('input[name="tel"]').on("input", function () {
   $('input[name="email"]').removeClass("error");
   $('.excursion__input[name="name"]').removeClass("error");
+  $(this).removeClass('error');
 });
 
 $('.excursion__input[name="name"]').on("input", function () {
+  $(this).removeClass('error');
   $('.excursion__input[name="tel"]').removeClass("error");
 });
 
-$('.excursion__input[name="tel"]').mask("+7 999 999-99-99");
 
 // new page forms
 $(document).on("submit", ".excursion__form", function (e) {
@@ -562,11 +574,8 @@ $(document).on("submit", ".excursion__form", function (e) {
   const $name = $form.find('[name="name"]');
   const $tel = $form.find('[name="tel"]');
 
-  if ($name.val().length < 2) {
+  if ($name.val().length < 2 && $tel.val().length < 4) {
     $name.addClass("error");
-  }
-
-  if ($tel.val().length < 4) {
     $tel.addClass("error");
   }
 
@@ -583,9 +592,9 @@ $(document).on("submit", ".excursion__form", function (e) {
         $form.removeClass("loading").addClass("success");
         $form.find(".js-input").removeClass("error not-empty");
         if (response) {
-          $(".excursion").find(".js-form-result").addClass("ok");
+          $(".excursion").find(".form-result").addClass("ok");
         } else {
-          $(".excursion").find(".js-form-result").addClass("error");
+          $(".excursion").find(".form-result").addClass("error");
         }
       },
     });
@@ -593,38 +602,16 @@ $(document).on("submit", ".excursion__form", function (e) {
   return false;
 });
 
-$(".feedback-section__form .js-input").on("input", function () {
-  if ($(this).val().length > 2) {
-    $(this).addClass("not-empty");
-  } else {
-    $(this).removeClass("not-empty");
-  }
-  if ($(".feedback-section__form .js-input.not-empty").length >= 3) {
-    $(".feedback-section__button").attr("disabled", false);
-  } else {
-    $(".feedback-section__button").attr("disabled", true);
-  }
-});
-
-$(".feedback-section__form").find('[name="tel"]').mask("+7 999 999-99-99");
-
 $(document).on("submit", ".feedback-section__form", function (e) {
   e.preventDefault();
   const $form = $(this);
   const $name = $form.find('[name="name"]');
   const $last_name = $form.find('[name="last-name"]');
   const $tel = $form.find('[name="tel"]');
+  const $msg = $form.find('[name="message"]');
 
-  if ($name.val().length < 2) {
+  if ($name.val().length < 2 && $tel.val().length < 2 && $last_name.val().length < 2 && $msg.val().length < 2) {
     $name.addClass("error");
-  }
-
-  if ($last_name.val().length < 2) {
-    $last_name.addClass("error");
-  }
-
-  if ($tel.val().length < 4) {
-    $tel.addClass("error");
   }
 
   if ($form.find(".js-input.error").length == 0) {
@@ -644,6 +631,78 @@ $(document).on("submit", ".feedback-section__form", function (e) {
           $form.find(".form-result").addClass("ok");
         } else {
           $form.find(".form-result").addClass("error");
+        }
+      },
+    });
+  }
+  return false;
+});
+
+$(document).on("submit", ".example__form", function (e) {
+  e.preventDefault();
+  const $form = $(this);
+  const $name = $form.find('[name="name"]');
+  const $msg = $form.find('[name="msg"]');
+  const $tel = $form.find('[name="tel"]');
+  const $mail = $form.find('[name="mail"]');
+
+  if ($name.val().length < 2 && $tel.val().length < 2 && $msg.val().length < 2 && $mail.val().length < 2) {
+    $name.addClass("error");
+  }
+
+  if ($form.find(".js-input.error").length == 0) {
+    $.ajax({
+      type: "POST",
+      url: site.theme_path + "/inc/forms/form-example-project.php",
+      data: $form.serialize(),
+      beforeSend: function () {
+        $form.find(".example__form-button").attr("disabled", true);
+      },
+      success: function (response) {
+        $form.find(".example__form-button").attr("disabled", false);
+        $form.trigger("reset");
+        $form.removeClass("loading").addClass("success");
+        $form.find(".js-input").removeClass("error not-empty");
+        if (response) {
+          $(".example").find(".form-result").addClass("ok");
+        } else {
+          $(".example").find(".form-result").addClass("error");
+        }
+      },
+    });
+  }
+  return false;
+});
+
+$(document).on("submit", ".modal__example-form", function (e) {
+  e.preventDefault();
+  const $form = $(this);
+  const $name = $form.find('[name="name"]');
+  const $msg = $form.find('[name="msg"]');
+  const $tel = $form.find('[name="tel"]');
+  const $mail = $form.find('[name="mail"]');
+
+  if ($name.val().length < 2 && $tel.val().length < 2 && $msg.val().length < 2 && $mail.val().length < 2) {
+    $name.addClass("error");
+  }
+
+  if ($form.find(".js-input.error").length == 0) {
+    $.ajax({
+      type: "POST",
+      url: site.theme_path + "/inc/forms/form-example-project.php",
+      data: $form.serialize(),
+      beforeSend: function () {
+        $form.find(".example__form-button").attr("disabled", true);
+      },
+      success: function (response) {
+        $form.find(".example__form-button").attr("disabled", false);
+        $form.trigger("reset");
+        $form.removeClass("loading").addClass("success");
+        $form.find(".js-input").removeClass("error not-empty");
+        if (response) {
+          $(".modal").find(".form-result").addClass("ok");
+        } else {
+          $(".modal").find(".form-result").addClass("error");
         }
       },
     });
@@ -760,6 +819,12 @@ $(".info__block-item").on("mouseover", function () {
     $(".info__span4").css("left", "20%");
     $(".info__span2").css("top", "20%");
     $(".info__span3").css("width", "10%");
+    $(".info__mobile-span1").css('right', '0');
+    $(".info__mobile-span2").css('right', '0');
+    $(".info__mobile-span3").css('top', '19%');
+    $(".info__mobile-line2").css('height', '70%');
+    $(".info__mobile-line3").css('height', '35%');
+    $(".info__mobile-line4").css('height', '30%');
   } else {
     const width = $(this).width();
     $(".info__item-line").css("left", `calc(7% + ${width * (number - 1)}px)`);
@@ -777,6 +842,11 @@ $(".info__block-item").on("mouseover", function () {
     $(".info__span4").css("left", "20%");
     $(".info__span2").css("top", "20%");
     $(".info__span3").css("width", "10%");
+    $(".info__mobile-span3").css('top', '10%');
+    $(".info__mobile-span2").css('right', '10%');
+    $(".info__mobile-line2").css('height', '50%');
+    $(".info__mobile-line3").css('height', '35%');
+    $(".info__mobile-line4").css('height', '40%');
   }
   if (number == 3) {
     $(".info__line8").css("bottom", "24%");
@@ -790,6 +860,11 @@ $(".info__block-item").on("mouseover", function () {
     $(".info__span2").css("top", "24%");
     $(".info__span6").css("bottom", "48%");
     $(".info__span3").css("width", "10%");
+    $(".info__mobile-span2").css('right', '27%');
+    $(".info__mobile-span3").css('top', '26%');
+    $(".info__mobile-line2").css('height', '30%');
+    $(".info__mobile-line3").css('height', '25%');
+    $(".info__mobile-line4").css('height', '45%');
   }
   if (number == 4) {
     $(".info__line2").css("bottom", "20%");
@@ -802,14 +877,21 @@ $(".info__block-item").on("mouseover", function () {
     $(".info__span4").css("left", "24%");
     $(".info__span2").css("top", "24%");
     $(".info__span3").css("width", "7%");
+    $(".info__mobile-span3").css('top', '12%');
+    $(".info__mobile-span2").css('right', '15%');
+    $(".info__mobile-line2").css('height', '15%');
+    $(".info__mobile-line3").css('height', '10%');
+    $(".info__mobile-line4").css('height', '30%');
   }
 });
 $(".info__block-item").on("click", function () {
-  if ($(this).hasClass("info__block--active")) {
-    return false;
+  if (!$(this).hasClass("info__block--active")) {
+    $(".info__block--active").removeClass("info__block--active");
+    $(this).addClass("info__block--active");
   }
-  $(".info__block--active").removeClass("info__block--active");
-  $(this).addClass("info__block--active");
+  if ($(this).attr('href') == '') {
+    e.preventDefault();
+  }
 });
 
 $(".cards__list").on("transitionstart", function () {
@@ -831,14 +913,15 @@ $(".cards__list").on("transitionstart", function () {
     }
   }
 });
+
 if (document.querySelector(".result__image-line")) {
   $(".result__image-line").draggable({
     containment: ".result__item",
     axis: "x",
     drag: function (_, ui) {
-      ui.position.left = Math.max(20, ui.position.left);
-      if (ui.position.left > $(".result__item").width() - 20) {
-        ui.position.left = $(".result__item").width() - 20;
+      ui.position.left = Math.max(32, ui.position.left);
+      if (ui.position.left > $(".result__item").width() - 32) {
+        ui.position.left = $(".result__item").width() - 32;
       }
       $(this)
         .closest(".result__image-section")
@@ -853,18 +936,50 @@ const resultSwiper = new Swiper(".result__item", {
   allowTouchMove: false,
 });
 
+let resultIndex = 0;
+
 $(".result__span-item").on("click", function () {
   if ($(this).hasClass("result__span--active")) {
     return;
   } else {
     $(".result__span--active").removeClass("result__span--active");
     $(this).addClass("result__span--active");
-    const index = $(this).data("number");
-    resultSwiper.slideTo(+index);
+    resultIndex = $(this).data("number");
+    resultSwiper.slideTo(+resultIndex);
     $(".result__right--active").removeClass("result__right--active");
-    $(`.result__right-body[data-number=${index}]`).addClass(
+    $(`.result__right-body[data-number=${resultIndex}]`).addClass(
       "result__right--active"
     );
+  }
+});
+
+$('.result__right-button').on('click', function() {
+  if (resultSwiper.slideNext()) {
+    resultIndex += 1;
+    $(".result__span--active").removeClass("result__span--active");
+    $(`.result__span-item[data-number="${resultIndex}"]`).addClass("result__span--active");
+    $(".result__right--active").removeClass("result__right--active");
+    $(`.result__right-body[data-number=${resultIndex}]`).addClass("result__right--active");
+  }
+});
+
+$('.result__button-next').on('click', function() {
+  if (resultSwiper.slideNext()) {
+    resultIndex += 1;
+    $(".result__span--active").removeClass("result__span--active");
+    $(`.result__span-item[data-number="${resultIndex}"]`).addClass("result__span--active");
+    $(".result__right--active").removeClass("result__right--active");
+    $(`.result__right-body[data-number=${resultIndex}]`).addClass("result__right--active");
+  }
+});
+
+$('.result__button-prev').on('click', function() {
+  if (resultSwiper.slidePrev()) {
+    resultIndex -= 1;
+    $(".result__span--active").removeClass("result__span--active");
+    $(`.result__span-item[data-number="${resultIndex}"]`).addClass("result__span--active");
+    $(".result__right--active").removeClass("result__right--active");
+    $(`.result__right-body[data-number=${resultIndex}]`).addClass("result__right--active");
   }
 });
 
@@ -891,67 +1006,150 @@ $(".employees__item").on("mouseover", function () {
   }
 });
 
-const videoSwiper = new Swiper(".video__list", {
-  slidesPerView: 3,
+const videoSwiper = new Swiper(".video__swiper-mobile", {
+  slidesPerView: 'auto',
   loop: true,
-  autoplay: {
-    delay: 1000
-  },
-  breakpoints: {
-    0: {
-      slidesPerView: 'auto',
-      spaceBetween: 30,
-    },
-    991: {
-      slidesPerView: 3,
-      direction: "horizontal",
-      spaceBetween: 64,
-    },
-  },
+  spaceBetween: 27,
 });
 
-$('.projects__filters-item').on('click', function() {
-  $('.projects__filters-item--active').removeClass('projects__filters-item--active');
-  $(this).addClass('projects__filters-item--active');
+$(".projects__filters-item").on("click", function () {
+  $(".projects__filters-item--active").removeClass(
+    "projects__filters-item--active"
+  );
+  $(this).addClass("projects__filters-item--active");
 });
 
-$('.design-list__example-item').each(function() {
-  $(this).css('z-index', '-1');
-  new Swiper($(this).find('.design-list__example-swiper')[0], {
+$(".design-list__example-item").each(function () {
+  $(this).css("z-index", "-1");
+  new Swiper($(this).find(".design-list__example-swiper")[0], {
     slidesPerView: 1,
     navigation: {
-      nextEl: $(this).find('.design-list__example-next')[0],
-      prevEl: '.design-list__example-prev'
+      nextEl: $(this).find(".design-list__example-next")[0],
+      prevEl: ".design-list__example-prev",
     },
     pagination: {
-      el: $(this).find('.design-list__example-pagination')[0],
-      clickable: true
-    }
-  })
+      el: $(this).find(".design-list__example-pagination")[0],
+      clickable: true,
+    },
+  });
 });
 
-$('.design-list__item-button').on('click', function() {
-  const number = $(this).closest('.design-list__item').data('number');
-  $(`.design-list__example-item:nth-of-type(${number})`).addClass('design-list__example-item--active');
-  $(`.design-list__example-item:nth-of-type(${number})`).css('z-index', '120');
+$(".design-list__item-button").on("click", function () {
+  const number = $(this).closest(".design-list__item").data("number");
+  $(`.design-list__example-item:nth-of-type(${number})`).addClass(
+    "design-list__example-item--active"
+  );
+  $(`.design-list__example-item:nth-of-type(${number})`).css("z-index", "120");
 });
 
-$('.design-list__example-item').on('click', function(e) {
-  if ($(e.target).hasClass('design-list__example-item--active')) {
-    $(e.target).removeClass('design-list__example-item--active');
-    const timeout = setTimeout(function() {
-      $(e.target).css('z-index', '-1');
+$(".design-list__example-item").on("click", function (e) {
+  if ($(e.target).hasClass("design-list__example-item--active")) {
+    $(e.target).removeClass("design-list__example-item--active");
+    const timeout = setTimeout(function () {
+      $(e.target).css("z-index", "-1");
       clearTimeout(timeout);
-    }, 400)
+    }, 400);
   }
 });
 
-new Swiper('.services__reviews-swiper', {
-  slidesPerView: 'auto',
+new Swiper(".services__reviews-swiper", {
+  slidesPerView: "auto",
   spaceBetween: 40,
   autoHeight: true,
   pagination: {
-    el: $('.services__reviews-pagination')[0],
+    el: $(".services__reviews-pagination")[0],
     clickable: true,
+  },
+});
+
+let max = 0;
+
+$(".projects__item").each(function (_, el) {
+  if ($(el).outerHeight() > max) {
+    max = $(el).outerHeight();
   }
-})
+});
+
+$(".projects__item").css("height", `${max}px`);
+
+$(window).on('resize', function() {
+  max = 0;
+
+  $(".projects__item").each(function (_, el) {
+    if ($(el).outerHeight() > max) {
+      max = $(el).outerHeight();
+    }
+  });
+
+  $(".projects__item").css("height", `${max}px`);
+});
+
+$('.projects__grid').isotope({ filter: '*' });
+
+$(".projects__filters-item").on("click", function () {
+  $(".projects__filters-item--active").removeClass(
+    "projects__filters-item--active"
+  );
+  $(this).addClass("projects__filters-item--active");
+  const filter = $(this).attr('data-filter');
+  $('.projects__grid').isotope({ filter: filter })
+});
+
+$(".modal-button").on("click", function () {
+  $('dialog.modal input[name="form-text"]').val('Получить пример дизайн проекта');
+  $("dialog.modal .example__title")[0].style.display = 'block';
+  $("dialog.modal .example__title--count").css('display', 'none');
+  $("dialog.modal .example__title-desc").css('display', 'block');
+  $("dialog.modal")[0].show();
+  $("dialog.modal").css("z-index", "150");
+  $("dialog.modal").addClass("modal--active");
+  $(".back").css("z-index", "140");
+  $(".back").addClass("back--active");
+});
+
+$(".modal-button--count").on("click", function () {
+  $('dialog.modal input[name="form-text"]').val('Получить расчёт стоимости');
+  $("dialog.modal .example__title")[0].style.display = 'none';
+  $("dialog.modal .example__title--count").css('display', 'block');
+  $("dialog.modal .example__title-desc").css('display', 'none');
+  $("dialog.modal")[0].show();
+  $("dialog.modal").css("z-index", "150");
+  $("dialog.modal").addClass("modal--active");
+  $(".back").css("z-index", "140");
+  $(".back").addClass("back--active");
+});
+
+
+$('.back').on('click', function() {
+  $('dialog.modal').removeClass('modal--active');
+  $('.back').removeClass('back--active');
+  const timeout = setTimeout(function() {
+    $('dialog.modal')[0].close();
+    $('dialog.modal').css('z-index', '-1');
+    $('.back').css('z-index', '-1');
+    $('.modal__example-form').trigger('reset');
+    clearTimeout(timeout);
+  }, 500)
+});
+
+$('.project__list-row').each(function(_, el) {
+  new Swiper(el, {
+    slidesPerView: 'auto',
+    allowTouchMove: false,
+    waitForTransition: false,
+    loop: true,
+    speed: 2500,
+    autoplay: {
+      enabled: true,
+      delay: 0
+    },
+    breakpoints: {
+      0: {
+        spaceBetween: 10,
+      },
+      992: {
+        spaceBetween: 20
+      }
+    }
+  })
+});
