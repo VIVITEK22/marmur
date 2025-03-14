@@ -3200,6 +3200,11 @@ body {
   background-color: #1C1C1C;
 }
 
+.fancybox-navigation .fancybox-button {
+  width: 100px;
+  height: 100px;
+}
+
 @media (max-width: 991px) {
   p {
     margin: 0;
@@ -4311,6 +4316,11 @@ body {
 
   .project__list-row .project__list-item {
     width: 49vw;
+  }
+
+  .fancybox-navigation .fancybox-button {
+    width: 38px;
+    height: 38px;
   }
 }
 
