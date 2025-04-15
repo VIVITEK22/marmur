@@ -1132,16 +1132,20 @@ $('.back').on('click', function() {
   }, 500)
 });
 
+let projectListI = 0;
+
 $('.project__list-row').each(function(_, el) {
+  projectListI++;
   new Swiper(el, {
     slidesPerView: 'auto',
     allowTouchMove: false,
     waitForTransition: false,
     loop: true,
-    speed: 2500,
+    speed: 4000,
     autoplay: {
       enabled: true,
-      delay: 0
+      delay: 0,
+      reverseDirection: projectListI % 2 == 0,
     },
     breakpoints: {
       0: {
@@ -1152,4 +1156,13 @@ $('.project__list-row').each(function(_, el) {
       }
     }
   })
+});
+
+$('.project-video').each(function(_, el) {
+  const video = $(el)[0];
+  if (video.playing) {
+
+  } else {
+    video.play();
+  }
 });
